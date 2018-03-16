@@ -1,0 +1,33 @@
+
+Before Optimized
+trans, execution 
+(1) 22966, 1694
+(2) 23747, 2475
+(3) 24528, 3256
+(4) 25309, 4037
+(5) 26090, 4818
+(6) 26871, 5599
+(7) 27652, 6380
+(8) 28433, 7161
+(9) 29214, 7942
+(10) 29995, 8723
+
+After Optimized
+trans, execution 
+(1) 22124, 852
+(2) 22124, 852
+(3) 22124, 852
+(4) 22124, 852
+(5) 22124, 852
+(6) 22124, 852
+(7) 22124, 852
+(8) 22124, 852
+(9) 22124, 852
+(10) 22124, 852
+
+
+calculateRunway函数的优化:
+Before optimization, there is a for loop to iterate the employee array to sum the salary. The more employee we have, 
+more executions we will have in for loop. That is why the gas are incrased
+
+By using a global variable to track to current total salary, we can avoid the loop which waste gas
