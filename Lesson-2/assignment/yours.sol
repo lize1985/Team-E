@@ -11,6 +11,8 @@ contract Payroll {
 
     address owner;
     Employee[] employees;
+    
+    // the variable is used to track the total costs of the salary
     uint cost = 0;
 
     function Payroll() public {
@@ -34,6 +36,7 @@ contract Payroll {
         require(msg.sender == owner);
         var (employee, index) = _findEmployee(employeeId);
         assert(employee.id == 0x0);
+        //update cost
         cost = cost + salary;
         employees.push(Employee(employeeId, salary, now));
     }
@@ -43,6 +46,7 @@ contract Payroll {
         var (employee, index) = _findEmployee(employeeId);
         assert(employee.id != 0x0);
         _partialPaid(employee);
+        //update cost
         cost = cost - employee.salary;
         assert(cost>=0);
         
@@ -55,9 +59,11 @@ contract Payroll {
         require(msg.sender == owner);
         var (employee, index) = _findEmployee(employeeId);
         assert(employee.id != 0x0);
+        // update cost
         cost = cost - employee.salary;
         assert(cost>=0);
         cost = cost + salary;
+        
         _partialPaid(employee);
         employees[index].salary = salary;
         employees[index].lastPayday = now;
