@@ -1,0 +1,60 @@
+creation of Payroll pending...
+[vm] from:0x147...c160c, to:Payroll.(constructor), value:0 wei, data:0x606...30029, 0 logs, hash:0x812...70043
+Details
+Debug
+transact to Payroll.addFund pending ... 
+[vm] from:0x147...c160c, to:Payroll.addFund() 0xffc...e26fd, value:100000000000000000000 wei, data:0xa2f...09dfa, 0 logs, hash:0xa10...e6d45
+Details
+Debug
+transact to Payroll.addEmployee pending ... 
+[vm] from:0x147...c160c, to:Payroll.addEmployee(address,uint256) 0xffc...e26fd, value:0 wei, data:0xe7f...0000a, 0 logs, hash:0x801...45539
+Details
+Debug
+call to Payroll.checkEmployee
+[call] from:0x14723a09acff6d2a60dcdf7aa4aff308fddc160c, to:Payroll.checkEmployee(address), data:7cf56...a733c, return: 
+Details
+Debug
+{
+	"0": "uint256: salary 10000000000000000000",
+	"1": "uint256: lastPayday 1521532956"
+}
+transact to Payroll.updateEmployee pending ... 
+[vm] from:0x147...c160c, to:Payroll.updateEmployee(address,uint256) 0xffc...e26fd, value:0 wei, data:0x5e9...0000c, 0 logs, hash:0x426...f77dc
+Details
+Debug
+call to Payroll.hasEnoughFund
+[call] from:0x14723a09acff6d2a60dcdf7aa4aff308fddc160c, to:Payroll.hasEnoughFund(), data:23fed...ed09e, return: 
+Details
+Debug
+{
+	"0": "bool: true"
+}
+call to Payroll.owner
+[call] from:0x14723a09acff6d2a60dcdf7aa4aff308fddc160c, to:Payroll.owner(), data:8da5c...5cb5b, return: 
+Details
+Debug
+{
+	"0": "address: 0x14723a09acff6d2a60dcdf7aa4aff308fddc160c"
+}
+call to Payroll.calculateRunway
+[call] from:0x14723a09acff6d2a60dcdf7aa4aff308fddc160c, to:Payroll.calculateRunway(), data:4ec19...19512, return: 
+Details
+Debug
+{
+	"0": "uint256: 4"
+}
+call to Payroll.getCost
+[call] from:0x14723a09acff6d2a60dcdf7aa4aff308fddc160c, to:Payroll.getCost(), data:bd3e1...e19d4, return: 
+Details
+Debug
+{
+	"0": "uint256: 12000000000000000000"
+}
+transact to Payroll.getPaid pending ... 
+[vm] from:0xca3...a733c, to:Payroll.getPaid() 0xffc...e26fd, value:0 wei, data:0xcf4...1d6f8, 0 logs, hash:0x8ed...6b188
+
+transact to Payroll.removeEmployee pending ... 
+[vm] from:0x147...c160c, to:Payroll.removeEmployee(address) 0x688...8a596, value:0 wei, data:0xd10...4d2db, 0 logs, hash:0x24d...922aa
+
+transact to Payroll.transferOwnership pending ... 
+[vm] from:0x147...c160c, to:Payroll.transferOwnership(address) 0x688...8a596, value:0 wei, data:0xf2f...a733c, 1 logs, hash:0x92c...c3585
