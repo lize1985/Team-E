@@ -24,17 +24,20 @@ contract Payroll is Ownable {
         _;
     }
     
+    modifier EmployeeNotExist(address employeeId){
+        Employee storage employee = employees[employeeId];
+        assert(employee.id == 0x0);
+        _;
+    }
+    
     function _partialPaid(Employee employee) private {
         uint payment  = employee.salary.mul(now.sub(employee.lastPayday)).div(payDuration);
         employee.id.transfer(payment);
     }
 
-    function addEmployee(address employeeId, uint salary) onlyOwner public {
-        Employee storage employee = employees[employeeId];
-        assert(employee.id == 0x0);
+    function addEmployee(address employeeId, uint salary) onlyOwner EmployeeNotExist(employeeId) public {
         employees[employeeId]=(Employee(employeeId, salary * 1 ether, now));
         cost = cost.add(salary * 1 ether);
-
     }
     
     function removeEmployee(address employeeId) onlyOwner employeeExist(employeeId) public {
@@ -78,6 +81,11 @@ contract Payroll is Ownable {
         employee.id.transfer(employee.salary);
     }
     
+    function changePaymentAddress(address employeeId, address newaddress) onlyOwner employeeExist(employeeId) EmployeeNotExist(newaddress) public {
+        addEmployee(newaddress,  employees[employeeId].salary);
+        removeEmployee(employeeId);
+    }
+    
     
     function checkEmployee(address employeeId) public employeeExist(employeeId) view returns (uint salary, uint lastPayday){
         Employee storage employee = employees[employeeId];
@@ -88,6 +96,5 @@ contract Payroll is Ownable {
     function getCost() public view returns (uint){
         return cost;
     }
-    
-    
+      
 }
