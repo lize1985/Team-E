@@ -59,6 +59,7 @@ class App extends Component {
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
       this.setState({
+        accounts:accounts,
         account: accounts[0],
       });
       Payroll.deployed().then((instance) => {
@@ -69,6 +70,13 @@ class App extends Component {
       })
     })
   }
+
+  onSelectAccount= (ev) => {
+    this.setState({
+      selectedAccount:ev.target.text
+    });
+  }
+
 
   onSelectTab = ({key}) => {
     this.setState({
@@ -97,7 +105,7 @@ class App extends Component {
     return (
       <Layout>
         <Header className="header">
-          <div className="logo">老董区块链干货铺员工系统</div>
+          <div className="logo">Payroll System</div>
           <Menu
             theme="dark"
             mode="horizontal"
@@ -105,8 +113,8 @@ class App extends Component {
             style={{ lineHeight: '64px' }}
             onSelect={this.onSelectTab}
           >
-            <Menu.Item key="employer">雇主</Menu.Item>
-            <Menu.Item key="employee">雇员</Menu.Item>
+            <Menu.Item key="employer">Employer</Menu.Item>
+            <Menu.Item key="employee">Employee</Menu.Item>
           </Menu>
         </Header>
         <Content style={{ padding: '0 50px' }}>
@@ -115,7 +123,6 @@ class App extends Component {
           </Layout>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Payroll ©2017 老董区块链干货铺
         </Footer>
       </Layout>
     );

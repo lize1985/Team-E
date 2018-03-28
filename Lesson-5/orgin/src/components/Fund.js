@@ -18,7 +18,10 @@ class Fund extends Component {
     payroll.addFund({
       from: account,
       value: web3.toWei(this.state.fund)
+    }). then(() => {
+      window.location.reload(true);       
     });
+    
   }
 
   render() {

@@ -15,7 +15,7 @@ contract Payroll is Ownable {
 
     uint totalSalary;
     uint totalEmployee;
-    address[] employeeList;
+    address[]  public employeeList ;
     mapping(address => Employee) public employees;
 
 
@@ -25,6 +25,16 @@ contract Payroll is Ownable {
         _;
     }
     
+
+
+    function _findEmployee(address employeeId) private view returns (uint) {
+        for (uint i = 0; i < employeeList.length;i++) {
+            if (employeeList[i] == employeeId) {
+                return i;
+            }
+        }
+    }
+
     function _partialPaid(Employee employee) private {
         uint payment = employee.salary
             .mul(now.sub(employee.lastPayday))
@@ -56,6 +66,13 @@ contract Payroll is Ownable {
         totalSalary = totalSalary.sub(employee.salary);
         delete employees[employeeId];
         totalEmployee = totalEmployee.sub(1);
+
+
+        var index = _findEmployee(employeeId);
+
+        delete employeeList[index];
+        employeeList[index] = employeeList[employeeList.length-1];
+        employeeList.length -= 1;
     }
     
     function updateEmployee(address employeeId, uint salary) onlyOwner employeeExit(employeeId) {
